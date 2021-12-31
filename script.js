@@ -47,16 +47,18 @@ const RUS_CON = [
 ];
 const RUS_VOI = ["а", "е", "ё", "и", "о", "у", "ы", "э", "ю", "я"];
 
+const DIGITS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+
 window.onload = function () {
   const encryptButton = document.getElementById("encryptButton");
   encryptButton.addEventListener("click", encrypt);
-  
+
   const decryptButton = document.getElementById("decryptButton");
   decryptButton.addEventListener("click", decrypt);
-  
+
   const clearButton = document.getElementById("clearButton");
   clearButton.addEventListener("click", clear);
-  
+
   const copyButton = document.getElementById("copyButton");
   copyButton.addEventListener("click", copy);
 };
@@ -79,15 +81,15 @@ function decrypt() {
 
 function clear() {
   const textElement = document.getElementById("text");
-  textElement.value = ''
+  textElement.value = "";
   const decryptedText = document.getElementById("decryptedText");
-  decryptedText.value = ''
+  decryptedText.value = "";
 }
 
 function copy() {
   const decryptedText = document.getElementById("decryptedText");
   // decryptedText.select();
-  navigator.clipboard.writeText(decryptedText.value)
+  navigator.clipboard.writeText(decryptedText.value);
 }
 
 function cezar(text, isEncript = true) {
@@ -102,7 +104,7 @@ function cezar(text, isEncript = true) {
       const newSymbol = getNewSymbol(
         symbol,
         wordLength * (isEncript ? 1 : -1),
-        [ENG_CON, ENG_VOI, RUS_CON, RUS_VOI]
+        [ENG_CON, ENG_VOI, RUS_CON, RUS_VOI, DIGITS]
       );
       newWord += newSymbol;
     }
@@ -126,7 +128,8 @@ function cezar(text, isEncript = true) {
 
   function checkSymbol(symbol, offset, arr) {
     const index = arr.indexOf(symbol.toLowerCase());
-    const newIndex = (index + offset + arr.length) % arr.length;
+    const newIndex =
+      (((index + offset) % arr.length) + arr.length) % arr.length;
     const newSymbol = arr[newIndex];
     return symbol === symbol.toUpperCase()
       ? newSymbol.toUpperCase()
