@@ -1,15 +1,33 @@
 html {
+  
   font-family: "Comfortaa", cursive;
+  height: 100%;
 }
 
 body {
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #3dc9ce;
+  height: 100%;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 0 auto;
 }
 
 textarea {
   width: 300px;
   margin: 10px;
+}
+
+footer {
+  font-size: 14px;
+  color: gray;
+  flex: 0 0 auto;
+  margin-bottom: 10px;
 }
