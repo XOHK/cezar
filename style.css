@@ -31,3 +31,8 @@ footer {
   flex: 0 0 auto;
   margin-bottom: 10px;
 }
+
+footer a {
+  color: gray;
+  text-decoration: none;
+}

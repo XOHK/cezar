@@ -49,12 +49,21 @@ const RUS_VOI = ["а", "е", "ё", "и", "о", "у", "ы", "э", "ю", "я"];
 
 const DIGITS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
-window.onload = function () {
-  const encryptButton = document.getElementById("encryptButton");
-  encryptButton.addEventListener("click", encrypt);
+const ENCRYPT = "encrypt";
+const DECRYPT = "decrypt";
 
-  const decryptButton = document.getElementById("decryptButton");
-  decryptButton.addEventListener("click", decrypt);
+let encryptMode = ENCRYPT;
+
+window.onload = function () {
+  const textElement = document.getElementById("text");
+  textElement.addEventListener("keyup", onTextChange);
+
+  const encryptRadio = document.getElementById("encryptRadio");
+  encryptRadio.checked = true;
+  encryptRadio.addEventListener("click", changeMode);
+
+  const decryptRadio = document.getElementById("decryptRadio");
+  decryptRadio.addEventListener("click", changeMode);
 
   const clearButton = document.getElementById("clearButton");
   clearButton.addEventListener("click", clear);
@@ -62,6 +71,24 @@ window.onload = function () {
   const copyButton = document.getElementById("copyButton");
   copyButton.addEventListener("click", copy);
 };
+
+function onTextChange() {  
+  if (encryptMode === ENCRYPT) {
+    encrypt();
+  } else {
+    decrypt();
+  }
+}
+
+function changeMode() {
+  const encryptRadio = document.getElementById("encryptRadio");  
+  encryptMode = encryptRadio.checked ? ENCRYPT : DECRYPT;
+  if (encryptMode === ENCRYPT) {
+    encrypt();
+  } else {
+    decrypt();
+  }
+}
 
 function encrypt() {
   const textElement = document.getElementById("text");
@@ -129,7 +156,7 @@ function cezar(text, isEncript = true) {
   function checkSymbol(symbol, offset, arr) {
     const index = arr.indexOf(symbol.toLowerCase());
     const newIndex =
-      (((index + offset) % arr.length) + arr.length) % arr.length;
+      (((index + offset * 2) % arr.length) + arr.length) % arr.length;
     const newSymbol = arr[newIndex];
     return symbol === symbol.toUpperCase()
       ? newSymbol.toUpperCase()

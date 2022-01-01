@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cezar</title>
-    <link rel="icon" href="icon.png">
+    <link rel="icon" href="icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,11 +19,28 @@
   <body>
     <header><h2>Шифр Цезаря!</h2></header>
     <section>
-      <textarea id="text" cols="30" rows="5"></textarea>
+      <textarea
+        id="text"
+        cols="30"
+        rows="5"
+        placeholder="Введите текст"
+      ></textarea>
       <div>
-        <button id="encryptButton">Зашифровать</button>
-        <button id="decryptButton">Расшифровать</button>
-        <button id="clearButton">Очистить</button>
+        <input
+          type="radio"
+          id="encryptRadio"
+          name="encription"
+          value="encrypt"
+        />
+        <label for="encryptRadio">Зашифровать</label>
+
+        <input
+          type="radio"
+          id="decryptRadio"
+          name="encription"
+          value="decrypt"
+        />
+        <label for="decryptRadio">Расшифровать</label>
       </div>
       <textarea
         id="decryptedText"
@@ -31,8 +48,14 @@
         rows="5"
         disabled="true"
       ></textarea>
-      <button id="copyButton">Скопировать</button>
+      <div>
+        <button id="copyButton">Скопировать</button>
+        <button id="clearButton">Очистить</button>
+      </div>
     </section>
-    <footer>Сделал Ибрагим Досхоев ©</footer>
+    <footer>
+      Сделал
+      <a href="https://xohk.github.io/" target="_blank">Ибрагим Досхоев</a> ©
+    </footer>
   </body>
 </html>
